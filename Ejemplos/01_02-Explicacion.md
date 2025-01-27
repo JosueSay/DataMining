@@ -2,11 +2,10 @@
 
 ## Primer Código **01-Pre-procesamiento_Datos**
 
-lo que se quiere ver con los datos es tener el registro de los datos y si este cliente y determinar si es facilmente inclinado a comprar ofertas que se manden.
+El objetivo de este análisis es registrar y analizar los datos de los clientes para determinar su predisposición a aceptar ofertas enviadas. Para lograr esto, es necesario identificar las características principales de los clientes y separar las variables en dos categorías:  
 
-entonces se debe separar las caracteristicas con una meta que es la variable si compro o no.
-
-lo que se debe hacer es la separación de variable dependiente e independiente.
+1. **Variable dependiente**: Representa si el cliente realizó o no una compra como resultado de las ofertas enviadas.  
+2. **Variables independientes**: Incluyen las características del cliente que podrían influir en su decisión de compra (edad, historial de compras, preferencias, etc.).  
 
 ### Primera Parte (Exploración de Datos)
 
@@ -140,10 +139,27 @@ print(y_prueba)
 ### Quinta Parte: Escalamiento de Datos  
 
 El escalamiento de los datos debe realizarse **después** de dividirlos en conjuntos de entrenamiento y prueba. Para este propósito, utilizamos el `StandardScaler` de **scikit-learn**, que estandariza los datos para que tengan:  
+
 - Media igual a **0**.  
 - Desviación estándar igual a **1**.  
 
 Esto transforma los valores para que, en general, se encuentren dentro de un intervalo aproximado de **[-3, 3]**, siempre que los datos originales sigan una distribución normal.  
+
+Cuando escalas **antes de dividir**:
+
+1. Calculas la **media (\( \mu \))** y la **desviación estándar (\( \sigma \))** de **todos los datos** (entrenamiento + prueba).  
+2. Esa información (\( \mu \) y \( \sigma \)) se usa para escalar tanto los datos de entrenamiento como los de prueba.  
+3. Esto significa que los datos de prueba **afectan indirectamente** los datos de entrenamiento porque contribuyen al cálculo de \( \mu \) y \( \sigma \). Así, se rompe la separación entre ambos conjuntos y "mezclas" la información.  
+
+Cuando escalas **después de dividir**:
+
+1. Primero separas los datos en entrenamiento y prueba.
+2. Calculas \( \mu \) y \( \sigma \) **solo** usando los datos de entrenamiento.  
+3. Escalas los datos de entrenamiento con esos valores, y luego usas esos mismos \( \mu \) y \( \sigma \) para escalar los datos de prueba.  
+
+En este caso, los datos de prueba **no tienen ninguna influencia** sobre los datos de entrenamiento, lo que garantiza que el modelo solo aprenda de los datos de entrenamiento, como en un escenario real.  
+
+Por eso, **escalando después de dividir**, mantienes la separación correcta entre entrenamiento y prueba y obtienes una evaluación más realista del desempeño del modelo.
 
 ```python
 from sklearn.preprocessing import StandardScaler
@@ -160,3 +176,60 @@ print(X_prueba)
 
 - **`fit_transform`**: Calcula la media y desviación estándar del conjunto de entrenamiento y aplica la transformación.  
 - **`transform`**: Usa los valores calculados previamente en el conjunto de entrenamiento para transformar el conjunto de prueba, asegurando consistencia.  
+
+## Segundo código **02-Pre-procesamiento-Datos_Pandas**
+
+### Primera Parte (Exploración de Datos)
+
+Los primeros pasos son iguales que el anterior hasta Datos faltantes.
+
+### Segunda Parte (Datos Faltantes)
+
+En este código usando pandas se rellenan todos los valores nan usando la media y unicmante valores numericos de la columna `Age` y `Salary`.
+
+```python
+X = X.fillna(X.mean(numeric_only = True)["Age":"Salary"])
+```
+
+### Tercera Parte (Clasificación de Variables NO Núméricas)
+
+En este punto se sigue el mismo proceso que el primer código, pero usando panas para crear columnas y un comodín donde se tienen nuevas columnas de conversion numérica de los países y luego añadiendolo a dataframe original.
+
+```python
+comodin = pd.get_dummies(X['Country'])
+concatenado = pd.concat([X, comodin], axis = 1)
+concatenado = concatenado.drop(['Country'], axis = 1)
+```
+
+O se puede hacer un enfoque más flexible:
+
+```python
+def codif_y_ligar(dataframe_original, variables_a_codificar):
+    dummies = pd.get_dummies(dataframe_original[[variables_a_codificar]])
+    resultado = pd.concat([dataframe_original, dummies], axis = 1)
+    resultado = resultado.drop([variables_a_codificar], axis = 1)
+    return(resultado)
+
+variables_a_codificar = ['Country']  # Lista de variables a codificar
+for variable in variables_a_codificar:
+    X = codif_y_ligar(X, variable)
+```
+
+#### **Diferencias clave:**
+
+| Característica                  | **Enfoque 1** (con función `codif_y_ligar`)                  | **Enfoque 2** (con `get_dummies()` directamente)             |
+|----------------------------------|-------------------------------------------------------------|------------------------------------------------------------|
+| **Flexibilidad**                 | Más flexible, permite trabajar con varias columnas en un bucle. | Más directo y simple, pero se aplica solo a una columna a la vez. |
+| **Uso de bucles**                | Usa un bucle para aplicar la transformación a múltiples columnas. | Se aplica directamente a la columna `Country`.             |
+| **Manejo de múltiples variables**| Se pueden agregar múltiples variables a la lista `variables_a_codificar`. | No permite aplicar directamente a múltiples columnas sin modificaciones adicionales. |
+
+#### **Similitudes**
+
+- En ambos enfoques se obtiene el mismo resultado: se crean columnas binarias para cada valor de `Country` y se eliminan las columnas originales.
+- Ambos métodos usan `pd.get_dummies()` para realizar el **one-hot encoding**.
+
+> **Nota:** One Hot Encoding es una técnica de preprocesamiento de datos utilizada para convertir variables categóricas en variables numéricas.
+
+### Procesos Posteriores
+
+Para el caso de la variable independiente se hace algo parecido pero solo con `sí` y `no` y el escalamiento se hace igual que en el código 1 con `sklearn`.

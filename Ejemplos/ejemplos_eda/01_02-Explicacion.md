@@ -136,7 +136,7 @@ print(y_prueba)
 
 ---
 
-### Quinta Parte: Escalamiento de Datos  
+### Quinta Parte: Escalamiento de Datos
 
 El escalamiento de los datos debe realizarse **después** de dividirlos en conjuntos de entrenamiento y prueba. Para este propósito, utilizamos el `StandardScaler` de **scikit-learn**, que estandariza los datos para que tengan:  
 
@@ -147,15 +147,15 @@ Esto transforma los valores para que, en general, se encuentren dentro de un int
 
 Cuando escalas **antes de dividir**:
 
-1. Calculas la **media (\( \mu \))** y la **desviación estándar (\( \sigma \))** de **todos los datos** (entrenamiento + prueba).  
-2. Esa información (\( \mu \) y \( \sigma \)) se usa para escalar tanto los datos de entrenamiento como los de prueba.  
-3. Esto significa que los datos de prueba **afectan indirectamente** los datos de entrenamiento porque contribuyen al cálculo de \( \mu \) y \( \sigma \). Así, se rompe la separación entre ambos conjuntos y "mezclas" la información.  
+1. Calculas la **media ($ \mu $)** y la **desviación estándar ($ \sigma $)** de **todos los datos** (entrenamiento + prueba).  
+2. Esa información ($ \mu $ y $ \sigma $) se usa para escalar tanto los datos de entrenamiento como los de prueba.  
+3. Esto significa que los datos de prueba **afectan indirectamente** los datos de entrenamiento porque contribuyen al cálculo de $ \mu $ y $ \sigma $. Así, se rompe la separación entre ambos conjuntos y "mezclas" la información.  
 
 Cuando escalas **después de dividir**:
 
 1. Primero separas los datos en entrenamiento y prueba.
-2. Calculas \( \mu \) y \( \sigma \) **solo** usando los datos de entrenamiento.  
-3. Escalas los datos de entrenamiento con esos valores, y luego usas esos mismos \( \mu \) y \( \sigma \) para escalar los datos de prueba.  
+2. Calculas $ \mu $ y $ \sigma $ **solo** usando los datos de entrenamiento.  
+3. Escalas los datos de entrenamiento con esos valores, y luego usas esos mismos $ \mu $ y $ \sigma $ para escalar los datos de prueba.  
 
 En este caso, los datos de prueba **no tienen ninguna influencia** sobre los datos de entrenamiento, lo que garantiza que el modelo solo aprenda de los datos de entrenamiento, como en un escenario real.  
 

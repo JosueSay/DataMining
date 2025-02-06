@@ -14,7 +14,7 @@
    - Crear un entorno virtual. Usa el siguiente comando:
 
      ```bash
-     python -m venv h1
+     python -m venv .venv
      ```
 
 2. **Instalar las dependencias**:

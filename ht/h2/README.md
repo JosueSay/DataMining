@@ -33,3 +33,8 @@
    - Corre las instrucciones de `lab02.ipynb` para replicar el proceso de limpieza y transformación de datos.
 
 ## 🤔 ¿Qué se hizo?
+
+Sepal length (longitud del sépalo) → en cm
+Sepal width (ancho del sépalo) → en cm
+Petal length (longitud del pétalo) → en cm
+Petal width (ancho del pétalo) → en cm

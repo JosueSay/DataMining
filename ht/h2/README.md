@@ -52,7 +52,7 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
 
 4. **Configurar el entorno en Jupyter**:
 
-   - Configúralo el kernel de Jupyter Notebook con el entorno virtual creado; si instalaste las librerias fuera de un entorno selecciona el interprete de python utilizado.
+   - En el kernel de Jupyter Notebook selecciona el entorno virtual creado; si instalaste las librerias fuera de un entorno selecciona el interprete de python utilizado.
 
    ![Configuración Kernel Jupyter](./images/kernel_jupyter.png "Configuración Kernel Jupyter")
 

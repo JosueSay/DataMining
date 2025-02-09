@@ -30,6 +30,7 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
    python -m venv .venv
    cd .venv/Scripts
    Activate.ps1
+   cd ../..
    ```
 
    **WSL/Linux**
@@ -42,10 +43,10 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
    - Puedes omitir este paso si deseas instalar las dependencias en tu máquina.
 
 3. **Instalar las dependencias**:
-   - Dirígete a la carpeta del laboratorio `h2` y ejecuta:
+   - Instala las dependencias necesarias desde la raiz del repositorio:
 
      ```bash
-     pip install -r requirements.txt
+     pip install -r .\ht\h2\requirements.txt
      ```
 
      Esto instalará todas las librerías necesarias.
@@ -60,7 +61,7 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
    - Corre las instrucciones de `lab02.ipynb` para replicar el proceso de limpieza y transformación de datos si usas la extensión de `jupyter notebook` en vscode de lo contrario puedes ubicarte en la raiz de la carpeta y ejecutar el siguiente comando:
 
       ```bash
-      jupyter notebook ./ht/h2/lab02.ipynb
+      jupyter notebook .\ht\h2\lab02.ipynb
       ```
 
 ## 🤔 ¿Qué se hizo?

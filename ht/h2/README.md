@@ -57,7 +57,11 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
    ![Configuración Kernel Jupyter](./images/kernel_jupyter.png "Configuración Kernel Jupyter")
 
 5. **Ejecutar el script**:
-   - Corre las instrucciones de `lab02.ipynb` para replicar el proceso de limpieza y transformación de datos.
+   - Corre las instrucciones de `lab02.ipynb` para replicar el proceso de limpieza y transformación de datos si usas la extensión de `jupyter notebook` en vscode de lo contrario puedes ubicarte en la raiz de la carpeta y ejecutar el siguiente comando:
+
+      ```bash
+      jupyter notebook ./ht/h2/lab02.ipynb
+      ```
 
 ## 🤔 ¿Qué se hizo?
 
@@ -70,3 +74,7 @@ Se realizaron análisis de clustering utilizando K-Means en diferentes caracter�
 - Se repitió el proceso con la forma del pétalo para evaluar diferencias.
 - Se utilizó la librería "kneed" para validar los resultados obtenidos con el método del "codo" y se compararon con los datos reales.
 - Se analizaron las conclusiones basadas en los resultados obtenidos.
+
+## 🎥 Demostración
+
+![Demostración Ejecución Lab02](./images/demo_lab02.mp4 "Demostración Ejecución Lab02")

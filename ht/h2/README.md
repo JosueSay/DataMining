@@ -77,4 +77,4 @@ Se realizaron análisis de clustering utilizando K-Means en diferentes caracter�
 
 ## 🎥 Demostración
 
-![Demostración Ejecución Lab02](./images/demo_lab02.mp4 "Demostración Ejecución Lab02")
+- [**Video Demostrativo de Ejecución del Programa**](https://youtu.be/jiafnJTo8Uo)

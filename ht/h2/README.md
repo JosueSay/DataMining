@@ -24,21 +24,21 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
 
    - Crear un entorno virtual y activalo. Usa el siguiente comando:
 
-   **PowerShell**
+      **PowerShell**
 
-   ```bash
-   python -m venv .venv
-   cd .venv/Scripts
-   Activate.ps1
-   cd ../..
-   ```
+      ```bash
+      python -m venv .venv
+      cd .venv/Scripts
+      Activate.ps1
+      cd ../..
+      ```
 
-   **WSL/Linux**
+      **WSL/Linux**
 
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate
-   ```
+      ```bash
+      python -m venv .venv
+      source .venv/bin/activate
+      ```
 
    - Puedes omitir este paso si deseas instalar las dependencias en tu máquina.
 
@@ -55,7 +55,7 @@ Se aplicó el método de agrupación **K-Means Clustering** en el conjunto de da
 
    - En el kernel de Jupyter Notebook selecciona el entorno virtual creado; si instalaste las librerias fuera de un entorno selecciona el interprete de python utilizado.
 
-   ![Configuración Kernel Jupyter](./images/kernel_jupyter.png "Configuración Kernel Jupyter")
+      ![Configuración Kernel Jupyter](./images/kernel_jupyter.png "Configuración Kernel Jupyter")
 
 5. **Ejecutar el script**:
    - Corre las instrucciones de `lab02.ipynb` para replicar el proceso de limpieza y transformación de datos si usas la extensión de `jupyter notebook` en vscode de lo contrario puedes ubicarte en la raiz de la carpeta y ejecutar el siguiente comando:
